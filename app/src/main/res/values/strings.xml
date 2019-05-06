@@ -37,4 +37,5 @@
     <string name="navigate_to_login">Navigate To Login</string>
     <string name="navigate_to_register">Navigate To Register</string>
     <string name="login_successful">Login Successful</string>
+    <string name="login_canceled">Login Canceled</string>
 </resources>

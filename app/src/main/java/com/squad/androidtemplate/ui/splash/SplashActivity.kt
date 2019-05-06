@@ -7,7 +7,7 @@ import android.util.Log
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.squad.androidtemplate.R
-import com.squad.androidtemplate.ui.welcome.ui.welcome.WelcomeActivity
+import com.squad.androidtemplate.ui.welcome.ui.WelcomeActivity
 
 class SplashActivity : AppCompatActivity() {
 

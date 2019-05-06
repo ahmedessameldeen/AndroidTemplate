@@ -1,9 +1,11 @@
-package com.squad.androidtemplate.ui.welcome.ui.welcome
+package com.squad.androidtemplate.ui.welcome.ui
 
 import android.os.Bundle
 import com.squad.androidtemplate.R
 import com.squad.androidtemplate.databinding.WelcomeActivityBinding
 import com.squad.androidtemplate.ui.base.view.BaseActivity
+import com.squad.androidtemplate.ui.welcome.ui.welcome.WelcomeFragment
+import com.squad.androidtemplate.ui.welcome.ui.welcome.WelcomeViewModel
 import com.squad.androidtemplate.utils.extension.replaceFragmentInActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

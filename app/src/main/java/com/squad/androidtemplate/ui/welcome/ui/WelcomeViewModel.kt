@@ -2,6 +2,11 @@ package com.squad.androidtemplate.ui.welcome.ui.welcome
 
 
 import android.content.Intent
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -16,6 +21,7 @@ import com.squad.androidtemplate.ui.welcome.ui.LiveMessageEvent
 import com.squad.androidtemplate.utils.views.custom.ViewCallback
 
 const val GOOGLE_SIGN_IN: Int = 9001
+const val FACEBOOK_SIGN_IN: Int = 64206
 
 class WelcomeViewModel(
     private val welcomeRepository: WelcomeRepository,
@@ -23,11 +29,34 @@ class WelcomeViewModel(
 ) : BaseViewModel() {
 
     val startActivityForResultEvent = LiveMessageEvent<ActivityNavigation>()
-
+    private var mCallbackManager: CallbackManager? = null
     //Called on google login button click
     fun googleSignUp() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResultEvent.sendEvent { startActivityForResult(signInIntent, GOOGLE_SIGN_IN) }
+    }
+
+    fun initFaceBook() {
+        mCallbackManager = CallbackManager.Factory.create()
+        LoginManager.getInstance().registerCallback(mCallbackManager, object : FacebookCallback<LoginResult> {
+            override fun onSuccess(loginResult: LoginResult) {
+                emitUiState(
+                    showSuccess = Event(R.string.login_successful)
+                )
+            }
+
+            override fun onCancel() {
+                emitUiState(
+                    showError = Event(R.string.login_canceled)
+                )
+            }
+
+            override fun onError(error: FacebookException) {
+                emitUiState(
+                    showError = Event(R.string.login_failed)
+                )
+            }
+        })
     }
 
     //Called from Activity receving result
@@ -37,6 +66,10 @@ class WelcomeViewModel(
                 val task = GoogleSignIn.getSignedInAccountFromIntent(data)
                 googleSignInComplete(task)
             }
+            FACEBOOK_SIGN_IN -> {
+                mCallbackManager?.onActivityResult(requestCode, resultCode, data)
+            }
+
         }
     }
 
@@ -55,6 +88,7 @@ class WelcomeViewModel(
             )
         }
     }
+
 
     private fun emitUiState(
         showProgress: Boolean = false,

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.facebook.login.LoginManager
 import com.google.android.material.snackbar.Snackbar
 import com.squad.androidtemplate.R
 import com.squad.androidtemplate.databinding.WelcomeFragmentBinding
@@ -14,6 +15,7 @@ import com.squad.androidtemplate.ui.register.ui.register.RegisterActivity
 import com.squad.androidtemplate.ui.welcome.ui.ActivityNavigation
 import com.squad.androidtemplate.utils.setupSnackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
 class WelcomeFragment : BaseFragment(), ActivityNavigation {
 
@@ -29,12 +31,21 @@ class WelcomeFragment : BaseFragment(), ActivityNavigation {
         setupNormalLoginButton()
         setupNormalRegisterButton()
         setupGoogleLoginButton()
+        setupFacebookLoginButton()
         subscribeUi()
     }
 
     private fun setupGoogleLoginButton() {
         binding.googleSignInButton.setOnClickListener {
             viewmodel.googleSignUp()
+        }
+    }
+
+    private fun setupFacebookLoginButton() {
+        viewmodel.initFaceBook()
+        binding.facebookSignInButton.setOnClickListener {
+            LoginManager.getInstance()
+                .logInWithReadPermissions(this@WelcomeFragment, Arrays.asList("email", "public_profile"))
         }
     }
 

@@ -4,6 +4,8 @@ import android.content.Context
 import android.graphics.Typeface
 import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
+import com.facebook.FacebookSdk
+import com.facebook.appevents.AppEventsLogger
 import com.squad.androidtemplate.di.appModule
 import org.koin.android.ext.android.startKoin
 
@@ -38,6 +40,8 @@ class MyApp: MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
         startKoin(this, listOf(appModule))
+        FacebookSdk.sdkInitialize(applicationContext)
+        AppEventsLogger.activateApp(this)
         setupFonts()
     }
 
