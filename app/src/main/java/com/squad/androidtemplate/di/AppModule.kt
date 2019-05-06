@@ -2,6 +2,7 @@ package com.squad.androidtemplate.di
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.squad.androidtemplate.R
 import com.squad.androidtemplate.ui.login.data.LoginDataSource
 import com.squad.androidtemplate.ui.login.data.LoginRepository
 import com.squad.androidtemplate.ui.login.data.WelcomeDataSource
@@ -18,10 +19,7 @@ import org.koin.dsl.module.module
 
 val appModule = module {
 
-    val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-        .requestIdToken("1040754854311-8a3bdmlkiqp6mt22gg0snqu42tcvlna2.apps.googleusercontent.com")
-        .requestEmail()
-        .build()
+
 
     //layout Managers
     factory { androidx.recyclerview.widget.LinearLayoutManager(androidContext()) }
@@ -29,8 +27,13 @@ val appModule = module {
     //viewModels
     viewModel { LoginViewModel(get()) }
     viewModel { RegisterViewModel(get()) }
-    viewModel { WelcomeViewModel(get(), GoogleSignIn.getClient(androidContext(), gso)) }
-
+    viewModel {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(androidContext().resources.getString(R.string.google_web_client_id))
+            .requestEmail()
+            .build()
+        WelcomeViewModel(get(), GoogleSignIn.getClient(androidContext(), gso))
+    }
     //repositories
     factory { LoginRepository(get()) }
     factory { RegisterRepository(get()) }
