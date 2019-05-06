@@ -20,14 +20,10 @@ package com.squad.androidtemplate.utils
  */
 
 import android.view.View
-import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SnapHelper
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.snackbar.Snackbar
 
 /**
@@ -44,6 +40,7 @@ fun View.showSnackbar(snackbarText: String, actionText: String, actionListener: 
 fun View.showSnackbar(snackbarText: String, timeLength: Int) {
     Snackbar.make(this, snackbarText, timeLength).show()
 }
+
 
 /**
  * Triggers a snackbar message when the value contained by snackbarTaskMessageLiveEvent is modified.

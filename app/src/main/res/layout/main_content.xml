@@ -5,9 +5,9 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
+        android:background="@color/screenBackground"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:showIn="@layout/app_bar_main"
+        tools:showIn="@layout/main_app_bar"
         tools:context=".ui.MainActivity">
 
     <com.squad.androidtemplate.utils.views.custom.CustomTextView

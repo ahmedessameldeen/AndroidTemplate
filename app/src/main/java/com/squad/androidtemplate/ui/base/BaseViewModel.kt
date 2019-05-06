@@ -17,8 +17,8 @@ abstract class BaseViewModel : ViewModel() {
     val _dataLoading = MutableLiveData<Boolean>()
     val dataLoading: LiveData<Boolean> get() = _dataLoading
 
-    val _hasMorePosts = MutableLiveData<Boolean>()
-    val hasMorePosts: LiveData<Boolean> get() = _hasMorePosts
+    val _hasMoreItems = MutableLiveData<Boolean>()
+    val hasMorePosts: LiveData<Boolean> get() = _hasMoreItems
 
     val _isFreshData = MutableLiveData<Boolean>()
     val isFreshData: LiveData<Boolean> get() = _isFreshData

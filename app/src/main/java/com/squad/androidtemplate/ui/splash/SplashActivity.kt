@@ -7,7 +7,7 @@ import android.util.Log
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.squad.androidtemplate.R
-import com.squad.androidtemplate.ui.MainActivity
+import com.squad.androidtemplate.ui.login.ui.login.LoginActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -20,13 +20,13 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        setContentView(R.layout.activity_splash)
+        setContentView(R.layout.splash_activity)
 
         startEnteringAnimation()
         Log.v("dsdsdsds", "dsdsdsds")
         handler.postDelayed({
             if (!isInBackground) {
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, LoginActivity::class.java))
                 finish()
                 overridePendingTransition(0, 0)
             }
@@ -45,7 +45,7 @@ class SplashActivity : AppCompatActivity() {
         isInBackground = false
         handler.postDelayed({
             if (!isInBackground) {
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
         }, SPLASH_SCREEN_DELAY_TIME / 2)

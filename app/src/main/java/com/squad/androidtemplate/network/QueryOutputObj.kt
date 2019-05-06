@@ -1,6 +1,3 @@
-package com.code95.magrabi.mvvmData.network
+package com.squad.androidtemplate.network
 
- class QueryOutputObj{
-
-
-}
+class QueryOutputObj

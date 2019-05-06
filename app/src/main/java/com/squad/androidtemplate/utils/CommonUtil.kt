@@ -12,8 +12,7 @@ import java.util.*
 
 
 object CommonUtil {
-    object CommonConst {
-    }
+    object CommonConst
 
 
     /**
@@ -28,7 +27,7 @@ object CommonUtil {
         progressDialog.let {
             it.show()
             it.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
-            it.setContentView(R.layout.progress_dialog)
+            it.setContentView(R.layout.dialog_progress)
             it.isIndeterminate = true
             it.setCancelable(false)
             it.setCanceledOnTouchOutside(false)
@@ -76,9 +75,9 @@ object CommonUtil {
                     date,
                     System.currentTimeMillis(),
                     DateUtils.MINUTE_IN_MILLIS
-                ) == context.getResources().getString(R.string._0min)
+                ) == context.resources.getString(R.string._0min)
             ) {
-                return context.getResources().getString(R.string.justNow)
+                return context.resources.getString(R.string.justNow)
             } else {
                 return DateUtils.getRelativeTimeSpanString(
                     java.lang.Long.valueOf(date),
@@ -86,7 +85,7 @@ object CommonUtil {
                 ).toString()
             }
         } else if (isYesterday(date)) {
-            return context.getResources().getString(R.string.yesterday)
+            return context.resources.getString(R.string.yesterday)
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 return formatDate(date, context.resources.configuration.locales[0])

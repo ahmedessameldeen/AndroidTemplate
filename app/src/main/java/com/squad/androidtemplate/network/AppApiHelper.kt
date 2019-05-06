@@ -1,6 +1,5 @@
 package com.squad.androidtemplate.network
 
-import com.code95.magrabi.mvvmData.network.model.GetResponse
 import javax.inject.Inject
 
 /**
@@ -13,6 +12,4 @@ import javax.inject.Inject
  * @author Ahmed Salah
  * @since 11/11/18.
  */
-class AppApiHelper @Inject constructor(private val apiHeader: ApiHeader) : ApiHelper {
-
-}
+class AppApiHelper @Inject constructor(private val apiHeader: ApiHeader) : ApiHelper
