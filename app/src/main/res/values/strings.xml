@@ -36,4 +36,5 @@
     <string name="new_comment_channel_name">New Comment</string>
     <string name="navigate_to_login">Navigate To Login</string>
     <string name="navigate_to_register">Navigate To Register</string>
+    <string name="login_successful">Login Successful</string>
 </resources>

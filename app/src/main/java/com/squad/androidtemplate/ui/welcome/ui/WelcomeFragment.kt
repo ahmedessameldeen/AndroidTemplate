@@ -11,10 +11,11 @@ import com.squad.androidtemplate.databinding.WelcomeFragmentBinding
 import com.squad.androidtemplate.ui.base.view.BaseFragment
 import com.squad.androidtemplate.ui.login.ui.login.LoginActivity
 import com.squad.androidtemplate.ui.register.ui.register.RegisterActivity
+import com.squad.androidtemplate.ui.welcome.ui.ActivityNavigation
 import com.squad.androidtemplate.utils.setupSnackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class WelcomeFragment : BaseFragment() {
+class WelcomeFragment : BaseFragment(), ActivityNavigation {
 
     private val viewmodel: WelcomeViewModel by viewModel()
 
@@ -25,12 +26,38 @@ class WelcomeFragment : BaseFragment() {
     }
 
     override fun setUp() {
-        binding.login.setOnClickListener {
-            startActivity(Intent(activity, LoginActivity::class.java))
+        setupNormalLoginButton()
+        setupNormalRegisterButton()
+        setupGoogleLoginButton()
+        subscribeUi()
+    }
+
+    private fun setupGoogleLoginButton() {
+        binding.googleSignInButton.setOnClickListener {
+            viewmodel.googleSignUp()
         }
+    }
+
+    private fun setupNormalRegisterButton() {
         binding.register.setOnClickListener {
             startActivity(Intent(activity, RegisterActivity::class.java))
         }
+    }
+
+    private fun setupNormalLoginButton() {
+        binding.login.setOnClickListener {
+            startActivity(Intent(activity, LoginActivity::class.java))
+        }
+    }
+
+    private fun subscribeUi() {
+        //this sets the LifeCycler owner and receiver
+        viewmodel.startActivityForResultEvent.setEventReceiver(this, this)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        viewmodel.onResultFromActivity(requestCode, resultCode, data)
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun observeOnVM() {
