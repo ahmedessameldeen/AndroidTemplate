@@ -19,6 +19,7 @@ import org.koin.dsl.module.module
 val appModule = module {
 
     val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        .requestIdToken("1040754854311-8a3bdmlkiqp6mt22gg0snqu42tcvlna2.apps.googleusercontent.com")
         .requestEmail()
         .build()
 

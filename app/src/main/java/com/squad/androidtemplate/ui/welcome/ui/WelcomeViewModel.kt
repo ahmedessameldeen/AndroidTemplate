@@ -89,7 +89,6 @@ class WelcomeViewModel(
         }
     }
 
-
     private fun emitUiState(
         showProgress: Boolean = false,
         showError: Event<Int>? = null,
