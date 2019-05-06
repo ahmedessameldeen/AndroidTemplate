@@ -7,7 +7,7 @@ import android.util.Log
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.squad.androidtemplate.R
-import com.squad.androidtemplate.ui.login.ui.login.LoginActivity
+import com.squad.androidtemplate.ui.welcome.ui.welcome.WelcomeActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -26,7 +26,7 @@ class SplashActivity : AppCompatActivity() {
         Log.v("dsdsdsds", "dsdsdsds")
         handler.postDelayed({
             if (!isInBackground) {
-                startActivity(Intent(this, LoginActivity::class.java))
+                startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
                 overridePendingTransition(0, 0)
             }
@@ -45,7 +45,7 @@ class SplashActivity : AppCompatActivity() {
         isInBackground = false
         handler.postDelayed({
             if (!isInBackground) {
-                startActivity(Intent(this, LoginActivity::class.java))
+                startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
             }
         }, SPLASH_SCREEN_DELAY_TIME / 2)

@@ -31,6 +31,12 @@
                 android:name=".ui.login.ui.login.LoginActivity"
                 android:label="@string/title_activity_login">
         </activity>
+
+        <activity
+                android:name=".ui.welcome.ui.welcome.WelcomeActivity"
+                android:label="@string/title_activity_login">
+        </activity>
+
         <activity
                 android:name=".ui.register.ui.register.RegisterActivity"
                 android:label="@string/title_activity_register">
