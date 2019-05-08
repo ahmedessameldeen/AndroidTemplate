@@ -41,7 +41,7 @@ ext {
     glideVersion = '4.8.0'
     rx2FastAndroidNetworking = '1.0.2'
     navigationVersion = '1.0.0-rc02'
-    dagger2Version = '2.11'
+    dagger2Version = '2.15'
     rxjava2Version = '2.0.6'
     rxandroidVersion = '2.1.0'
     butterKnifeVersion = '8.8.1'
