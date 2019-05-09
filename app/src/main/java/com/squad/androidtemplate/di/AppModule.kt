@@ -2,9 +2,8 @@ package com.squad.androidtemplate.di
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.squad.androidtemplate.Injection
 import com.squad.androidtemplate.R
-import com.squad.androidtemplate.ui.login.data.LoginDataSource
-import com.squad.androidtemplate.ui.login.data.LoginRepository
 import com.squad.androidtemplate.ui.login.data.WelcomeDataSource
 import com.squad.androidtemplate.ui.login.data.WelcomeRepository
 import com.squad.androidtemplate.ui.login.ui.login.LoginViewModel
@@ -35,10 +34,9 @@ val appModule = module {
         WelcomeViewModel(get(), GoogleSignIn.getClient(androidContext(), gso))
     }
     //repositories
-    factory { LoginRepository(get()) }
+    factory { Injection.provideLoginRepository(androidContext()) }
     factory { RegisterRepository(get()) }
     factory { WelcomeRepository(get()) }
-    factory { LoginDataSource() }
     factory { RegisterDataSource() }
     factory { WelcomeDataSource() }
 

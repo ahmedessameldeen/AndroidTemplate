@@ -9,18 +9,13 @@ import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.lifecycle.Observer
-
 import com.google.android.material.snackbar.Snackbar
 import com.squad.androidtemplate.R
 import com.squad.androidtemplate.databinding.LoginFragmentBinding
 import com.squad.androidtemplate.ui.base.view.BaseFragment
-import com.squad.androidtemplate.utils.extension.afterTextChanged
 import com.squad.androidtemplate.utils.setupSnackbar
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : BaseFragment() {
-
-    private val viewmodel: LoginViewModel by viewModel()
 
     private lateinit var binding: LoginFragmentBinding
 
@@ -30,7 +25,7 @@ class LoginFragment : BaseFragment() {
 
     override fun setUp() {
 
-        viewmodel.loginFormState.observe(this@LoginFragment, Observer {
+        binding.viewmodel?.loginFormState?.observe(this@LoginFragment, Observer {
             val loginState = it ?: return@Observer
 
             // disable login button unless both username / password is valid
@@ -44,7 +39,7 @@ class LoginFragment : BaseFragment() {
             }
         })
 
-        viewmodel.loginResult.observe(this@LoginFragment, Observer {
+        binding.viewmodel?.loginResult?.observe(this@LoginFragment, Observer {
             val loginResult = it ?: return@Observer
 
             binding.loading.visibility = View.GONE
@@ -60,25 +55,11 @@ class LoginFragment : BaseFragment() {
             activity?.finish()
         })
 
-        binding.username.afterTextChanged {
-            viewmodel.loginDataChanged(
-                binding.username.text.toString(),
-                binding.password.text.toString()
-            )
-        }
-
         binding.password.apply {
-            afterTextChanged {
-                viewmodel.loginDataChanged(
-                    binding.username.text.toString(),
-                    binding.password.text.toString()
-                )
-            }
-
             setOnEditorActionListener { _, actionId, _ ->
                 when (actionId) {
                     EditorInfo.IME_ACTION_DONE ->
-                        viewmodel.login(
+                        binding.viewmodel?.login(
                             binding.username.text.toString(),
                             binding.password.text.toString()
                         )
@@ -86,10 +67,6 @@ class LoginFragment : BaseFragment() {
                 false
             }
 
-            binding.login.setOnClickListener {
-                binding.loading.visibility = View.VISIBLE
-                viewmodel.login(binding.username.text.toString(), binding.password.text.toString())
-            }
         }
     }
 
@@ -100,7 +77,7 @@ class LoginFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         binding.viewmodel?.let {
-            view?.setupSnackbar(this, viewmodel._retry, it.snackbarMessage, Snackbar.LENGTH_LONG)
+            view?.setupSnackbar(this, binding.viewmodel!!._retry, it.snackbarMessage, Snackbar.LENGTH_LONG)
         }
 
     }
@@ -110,7 +87,21 @@ class LoginFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.login_fragment, container, false)
-        binding = LoginFragmentBinding.bind(root)
+        binding = LoginFragmentBinding.bind(root).apply {
+            viewmodel = (activity as LoginActivity).obtainViewModel()
+            listener = object : LoginUserActionsListener {
+
+                override fun onUserInputsChanged(name: String, password: String) {
+                    binding.viewmodel?.loginDataChanged(name, password)
+                }
+
+                override fun onLoginButtonClicked(name: String, password: String) {
+                    binding.loading.visibility = View.VISIBLE
+                    binding.viewmodel?.login(name, password)
+                }
+
+            }
+        }
         binding.lifecycleOwner = this.viewLifecycleOwner
         setHasOptionsMenu(true)
         retainInstance = false
