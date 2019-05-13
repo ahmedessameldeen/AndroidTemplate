@@ -1,4 +1,4 @@
-package com.squad.androidtemplate.ui.login.ui.login
+package com.squad.androidtemplate.ui.login.ui
 
 import android.app.Activity
 import android.os.Bundle
@@ -123,6 +123,8 @@ class LoginFragment : BaseFragment() {
             "$welcome $displayName",
             Toast.LENGTH_LONG
         ).show()
+
+        (activity as LoginActivity).navigateToHome()
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {

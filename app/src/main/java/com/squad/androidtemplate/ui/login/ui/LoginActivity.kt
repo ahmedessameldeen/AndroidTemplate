@@ -1,4 +1,4 @@
-package com.squad.androidtemplate.ui.login.ui.login
+package com.squad.androidtemplate.ui.login.ui
 
 import android.os.Bundle
 import com.squad.androidtemplate.R
@@ -9,7 +9,9 @@ import com.squad.androidtemplate.utils.extension.replaceFragmentInActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class LoginActivity : BaseActivity() {
+class LoginActivity : BaseActivity(), LoginNavigator {
+
+
 
     private val loginViewModel: LoginViewModel by viewModel()
     private lateinit var binding: LoginActivityBinding
@@ -31,6 +33,10 @@ class LoginActivity : BaseActivity() {
 
     companion object {
         private val TAG = LoginActivity::class.qualifiedName
+    }
+
+    override fun navigateToHome() {
+        navigator.navigateToHomeActivity()
     }
 }
 

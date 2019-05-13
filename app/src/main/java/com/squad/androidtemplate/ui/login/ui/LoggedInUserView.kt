@@ -1,4 +1,4 @@
-package com.squad.androidtemplate.ui.login.ui.login
+package com.squad.androidtemplate.ui.login.ui
 
 /**
  * User details post authentication that is exposed to the UI

@@ -18,7 +18,7 @@ package com.squad.androidtemplate
 import android.content.Context
 import com.example.android.architecture.blueprints.todoapp.data.FakeLoginRemoteDataSource
 import com.squad.androidtemplate.ui.login.data.LoginRepository
-import com.squad.androidtemplate.ui.login.data.model.data.source.local.LoginLocalDataSource
+import com.squad.androidtemplate.ui.login.data.model.datasource.local.LoginLocalDataSource
 import com.squad.androidtemplate.utils.AppExecutors
 
 

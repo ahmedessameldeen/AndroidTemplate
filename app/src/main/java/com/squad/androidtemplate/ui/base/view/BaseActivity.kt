@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.LiveData
 import com.google.android.material.snackbar.Snackbar
 import com.squad.androidtemplate.R
+import com.squad.androidtemplate.ui.base.Navigator
 import com.squad.androidtemplate.utils.CommonUtil
 import com.squad.androidtemplate.utils.views.custom.ViewCallback
 
@@ -21,6 +22,9 @@ import com.squad.androidtemplate.utils.views.custom.ViewCallback
  * Created by Ahmed Salah on 04/11/18.
  */
 abstract class BaseActivity : AppCompatActivity(),BaseView, BaseFragment.CallBack, ViewCallback {
+
+    var navigator = Navigator()
+
     override fun showLoading() {
     }
 
@@ -47,6 +51,7 @@ abstract class BaseActivity : AppCompatActivity(),BaseView, BaseFragment.CallBac
         // Make sure we use vector drawables
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         initVMObservers()
+        configNavigator()
     }
 
     override fun hideProgress() {
@@ -142,6 +147,9 @@ abstract class BaseActivity : AppCompatActivity(),BaseView, BaseFragment.CallBac
 
     abstract fun initVMObservers()
 
+    private fun configNavigator() {
+        navigator.setContext(this)
+    }
 
     fun onBackPressed(view: View) {
         onBackPressed()

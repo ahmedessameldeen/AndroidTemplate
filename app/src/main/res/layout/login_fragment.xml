@@ -2,15 +2,15 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".ui.login.ui.login.LoginFragment">
+        tools:context=".ui.login.ui.LoginFragment">
     <data>
 
         <variable name="viewmodel"
-                  type="com.squad.androidtemplate.ui.login.ui.login.LoginViewModel"/>
+                  type="com.squad.androidtemplate.ui.login.ui.LoginViewModel"/>
 
         <variable
                 name="listener"
-                type="com.squad.androidtemplate.ui.login.ui.login.LoginUserActionsListener"/>
+                type="com.squad.androidtemplate.ui.login.ui.LoginUserActionsListener"/>
 
 
     </data>

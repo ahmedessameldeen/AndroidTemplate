@@ -1,4 +1,4 @@
-package com.squad.androidtemplate.ui.login.ui.login
+package com.squad.androidtemplate.ui.login.ui
 
 /**
  * Data validation state of the login form.

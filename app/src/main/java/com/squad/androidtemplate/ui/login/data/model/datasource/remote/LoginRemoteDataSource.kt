@@ -1,8 +1,8 @@
-package com.squad.androidtemplate.ui.login.data.model.data.source.remote
+package com.squad.androidtemplate.ui.login.data.model.datasource.remote
 
-import com.squad.androidtemplate.ui.login.data.LoginDataSource
 import com.squad.androidtemplate.ui.login.data.Result
 import com.squad.androidtemplate.ui.login.data.model.LoggedInUser
+import com.squad.androidtemplate.ui.login.data.model.datasource.LoginDataSource
 import java.io.IOException
 
 object LoginRemoteDataSource : LoginDataSource {

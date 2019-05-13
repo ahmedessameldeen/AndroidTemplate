@@ -6,7 +6,7 @@ import com.squad.androidtemplate.Injection
 import com.squad.androidtemplate.R
 import com.squad.androidtemplate.ui.login.data.WelcomeDataSource
 import com.squad.androidtemplate.ui.login.data.WelcomeRepository
-import com.squad.androidtemplate.ui.login.ui.login.LoginViewModel
+import com.squad.androidtemplate.ui.login.ui.LoginViewModel
 import com.squad.androidtemplate.ui.register.data.RegisterDataSource
 import com.squad.androidtemplate.ui.register.data.RegisterRepository
 import com.squad.androidtemplate.ui.register.ui.register.RegisterViewModel

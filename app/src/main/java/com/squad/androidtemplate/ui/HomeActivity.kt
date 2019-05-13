@@ -12,7 +12,7 @@ import com.squad.androidtemplate.ui.base.view.BaseActivity
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.main_app_bar.*
 
-class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
+class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     override fun initVMObservers() {
 

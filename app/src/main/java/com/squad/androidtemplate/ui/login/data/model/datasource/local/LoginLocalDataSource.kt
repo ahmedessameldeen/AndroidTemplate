@@ -1,9 +1,9 @@
-package com.squad.androidtemplate.ui.login.data.model.data.source.local
+package com.squad.androidtemplate.ui.login.data.model.datasource.local
 
 import androidx.annotation.VisibleForTesting
-import com.squad.androidtemplate.ui.login.data.LoginDataSource
 import com.squad.androidtemplate.ui.login.data.Result
 import com.squad.androidtemplate.ui.login.data.model.LoggedInUser
+import com.squad.androidtemplate.ui.login.data.model.datasource.LoginDataSource
 import com.squad.androidtemplate.utils.AppExecutors
 import java.io.IOException
 

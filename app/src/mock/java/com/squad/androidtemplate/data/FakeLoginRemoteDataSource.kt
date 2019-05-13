@@ -16,9 +16,9 @@
 package com.example.android.architecture.blueprints.todoapp.data
 
 import com.squad.androidtemplate.model.data.Task
-import com.squad.androidtemplate.ui.login.data.LoginDataSource
 import com.squad.androidtemplate.ui.login.data.Result
 import com.squad.androidtemplate.ui.login.data.model.LoggedInUser
+import com.squad.androidtemplate.ui.login.data.model.datasource.LoginDataSource
 import java.io.IOException
 import java.util.*
 

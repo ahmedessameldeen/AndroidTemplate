@@ -1,5 +1,6 @@
-package com.squad.androidtemplate.ui.login.data
+package com.squad.androidtemplate.ui.login.data.model.datasource
 
+import com.squad.androidtemplate.ui.login.data.Result
 import com.squad.androidtemplate.ui.login.data.model.LoggedInUser
 
 /**

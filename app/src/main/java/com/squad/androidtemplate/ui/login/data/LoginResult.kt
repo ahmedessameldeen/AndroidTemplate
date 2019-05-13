@@ -1,4 +1,6 @@
-package com.squad.androidtemplate.ui.login.ui.login
+package com.squad.androidtemplate.ui.login.data
+
+import com.squad.androidtemplate.ui.login.ui.LoggedInUserView
 
 /**
  * Authentication result : success (user details) or error message.

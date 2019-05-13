@@ -2,10 +2,10 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".ui.login.ui.login.LoginActivity">
+        tools:context=".ui.login.ui.LoginActivity">
     <data>
         <variable name="mainVM"
-                  type="com.squad.androidtemplate.ui.login.ui.login.LoginViewModel"/>
+                  type="com.squad.androidtemplate.ui.login.ui.LoginViewModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container"

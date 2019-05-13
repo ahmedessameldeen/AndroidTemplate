@@ -1,16 +1,14 @@
 package com.squad.androidtemplate.ui.login.data
 
 import com.squad.androidtemplate.ui.login.data.model.LoggedInUser
+import com.squad.androidtemplate.ui.login.data.model.datasource.LoginDataSource
 
 /**
  * Class that requests authentication and user information from the remote data source and
  * maintains an in-memory cache of login status and user credentials information.
  */
 
-class LoginRepository(
-    val localDataSource: LoginDataSource,
-    val remoteDataSource: LoginDataSource
-) {
+class LoginRepository(val localDataSource: LoginDataSource, val remoteDataSource: LoginDataSource) {
 
     // in-memory cache of the loggedInUser object
     var user: LoggedInUser? = null

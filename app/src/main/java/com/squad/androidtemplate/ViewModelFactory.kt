@@ -6,7 +6,7 @@ import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.squad.androidtemplate.ui.login.data.LoginRepository
-import com.squad.androidtemplate.ui.login.ui.login.LoginViewModel
+import com.squad.androidtemplate.ui.login.ui.LoginViewModel
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.

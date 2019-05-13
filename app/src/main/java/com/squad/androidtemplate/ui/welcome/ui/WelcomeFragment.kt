@@ -10,7 +10,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.squad.androidtemplate.R
 import com.squad.androidtemplate.databinding.WelcomeFragmentBinding
 import com.squad.androidtemplate.ui.base.view.BaseFragment
-import com.squad.androidtemplate.ui.login.ui.login.LoginActivity
+import com.squad.androidtemplate.ui.login.ui.LoginActivity
 import com.squad.androidtemplate.ui.register.ui.register.RegisterActivity
 import com.squad.androidtemplate.ui.welcome.ui.ActivityNavigation
 import com.squad.androidtemplate.utils.setupSnackbar
