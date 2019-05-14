@@ -92,10 +92,6 @@ class RegisterFragment : BaseFragment() {
         }
     }
 
-    override fun observeOnVM() {
-
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         binding.viewmodel?.let {

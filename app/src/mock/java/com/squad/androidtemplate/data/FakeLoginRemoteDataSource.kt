@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.architecture.blueprints.todoapp.data
+package com.squad.androidtemplate.data
 
 import com.squad.androidtemplate.model.data.Task
 import com.squad.androidtemplate.ui.login.data.Result

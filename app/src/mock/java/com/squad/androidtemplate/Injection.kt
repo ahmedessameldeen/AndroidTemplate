@@ -16,9 +16,12 @@
 package com.squad.androidtemplate
 
 import android.content.Context
-import com.example.android.architecture.blueprints.todoapp.data.FakeLoginRemoteDataSource
+import com.example.android.architecture.blueprints.todoapp.data.FakeWelcomeRemoteDataSource
+import com.squad.androidtemplate.data.FakeLoginRemoteDataSource
 import com.squad.androidtemplate.ui.login.data.LoginRepository
 import com.squad.androidtemplate.ui.login.data.model.datasource.local.LoginLocalDataSource
+import com.squad.androidtemplate.ui.welcome.data.WelcomeRepository
+import com.squad.androidtemplate.ui.welcome.data.datasource.local.WelcomeLocalDataSource
 import com.squad.androidtemplate.utils.AppExecutors
 
 
@@ -33,6 +36,13 @@ object Injection {
         return LoginRepository.getInstance(
             FakeLoginRemoteDataSource,
             LoginLocalDataSource.getInstance(AppExecutors())
+        )
+    }
+
+    fun provideWelcomeRepository(context: Context): WelcomeRepository {
+        return WelcomeRepository.getInstance(
+            FakeWelcomeRemoteDataSource,
+            WelcomeLocalDataSource.getInstance(AppExecutors())
         )
     }
 }

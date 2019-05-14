@@ -6,14 +6,10 @@ import com.squad.androidtemplate.databinding.LoginActivityBinding
 import com.squad.androidtemplate.ui.base.view.BaseActivity
 import com.squad.androidtemplate.utils.extension.obtainViewModel
 import com.squad.androidtemplate.utils.extension.replaceFragmentInActivity
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class LoginActivity : BaseActivity(), LoginNavigator {
 
-
-
-    private val loginViewModel: LoginViewModel by viewModel()
     private lateinit var binding: LoginActivityBinding
 
     override fun initVMObservers() {

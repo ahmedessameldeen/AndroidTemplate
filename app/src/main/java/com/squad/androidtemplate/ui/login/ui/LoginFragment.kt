@@ -70,10 +70,6 @@ class LoginFragment : BaseFragment() {
         }
     }
 
-    override fun observeOnVM() {
-
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         binding.viewmodel?.let {
@@ -124,7 +120,7 @@ class LoginFragment : BaseFragment() {
             Toast.LENGTH_LONG
         ).show()
 
-        (activity as LoginActivity).navigateToHome()
+//        (activity as LoginActivity).navigateToHome()
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {

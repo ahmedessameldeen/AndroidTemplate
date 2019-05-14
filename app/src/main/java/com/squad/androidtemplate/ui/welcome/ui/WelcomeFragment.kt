@@ -12,14 +12,12 @@ import com.squad.androidtemplate.databinding.WelcomeFragmentBinding
 import com.squad.androidtemplate.ui.base.view.BaseFragment
 import com.squad.androidtemplate.ui.login.ui.LoginActivity
 import com.squad.androidtemplate.ui.register.ui.register.RegisterActivity
-import com.squad.androidtemplate.ui.welcome.ui.ActivityNavigation
+import com.squad.androidtemplate.ui.welcome.ui.WelcomeActivity
+import com.squad.androidtemplate.ui.welcome.ui.WelcomeUserActionsListener
 import com.squad.androidtemplate.utils.setupSnackbar
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
-class WelcomeFragment : BaseFragment(), ActivityNavigation {
-
-    private val viewmodel: WelcomeViewModel by viewModel()
+class WelcomeFragment : BaseFragment() {
 
     private lateinit var binding: WelcomeFragmentBinding
 
@@ -28,57 +26,25 @@ class WelcomeFragment : BaseFragment(), ActivityNavigation {
     }
 
     override fun setUp() {
-        setupNormalLoginButton()
-        setupNormalRegisterButton()
-        setupGoogleLoginButton()
-        setupFacebookLoginButton()
+        binding.viewmodel?.initFaceBook()
         subscribeUi()
     }
 
-    private fun setupGoogleLoginButton() {
-        binding.googleSignInButton.setOnClickListener {
-            viewmodel.googleSignUp()
-        }
-    }
-
-    private fun setupFacebookLoginButton() {
-        viewmodel.initFaceBook()
-        binding.facebookSignInButton.setOnClickListener {
-            LoginManager.getInstance()
-                .logInWithReadPermissions(this@WelcomeFragment, Arrays.asList("email", "public_profile"))
-        }
-    }
-
-    private fun setupNormalRegisterButton() {
-        binding.register.setOnClickListener {
-            startActivity(Intent(activity, RegisterActivity::class.java))
-        }
-    }
-
-    private fun setupNormalLoginButton() {
-        binding.login.setOnClickListener {
-            startActivity(Intent(activity, LoginActivity::class.java))
-        }
-    }
 
     private fun subscribeUi() {
         //this sets the LifeCycler owner and receiver
-        viewmodel.startActivityForResultEvent.setEventReceiver(this, this)
+        binding.viewmodel?.startActivityForResultEvent?.setEventReceiver(this, activity as WelcomeActivity)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        viewmodel.onResultFromActivity(requestCode, resultCode, data)
+        binding.viewmodel?.onResultFromActivity(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
-    }
-
-    override fun observeOnVM() {
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         binding.viewmodel?.let {
-            view?.setupSnackbar(this, viewmodel._retry, it.snackbarMessage, Snackbar.LENGTH_LONG)
+            view?.setupSnackbar(this, binding.viewmodel!!._retry, it.snackbarMessage, Snackbar.LENGTH_LONG)
         }
 
     }
@@ -88,7 +54,29 @@ class WelcomeFragment : BaseFragment(), ActivityNavigation {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.welcome_fragment, container, false)
-        binding = WelcomeFragmentBinding.bind(root)
+        binding = WelcomeFragmentBinding.bind(root).apply {
+            viewmodel = (activity as WelcomeActivity).obtainViewModel()
+            listener = object : WelcomeUserActionsListener {
+                override fun onLoginButtonClicked() {
+                    startActivity(Intent(activity, LoginActivity::class.java))
+                }
+
+                override fun onRegisterButtonClicked() {
+                    startActivity(Intent(activity, RegisterActivity::class.java))
+                }
+
+                override fun onFacebookButtonClicked() {
+                    LoginManager.getInstance()
+                        .logInWithReadPermissions(this@WelcomeFragment, Arrays.asList("email", "public_profile"))
+
+                }
+
+                override fun onGoogleButtonClicked() {
+                    binding.viewmodel?.googleSignUp()
+                }
+
+            }
+        }
         binding.lifecycleOwner = this.viewLifecycleOwner
         setHasOptionsMenu(true)
         retainInstance = false

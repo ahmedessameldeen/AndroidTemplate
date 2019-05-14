@@ -3,7 +3,6 @@ package com.squad.androidtemplate.ui.base.view
 import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import com.google.android.material.snackbar.Snackbar
@@ -64,10 +63,6 @@ abstract class BaseFragment : Fragment(), BaseView, ViewCallback {
         setHasOptionsMenu(false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
     override fun hideProgress() {
         if (progressDialog != null && progressDialog?.isShowing!!) {
             progressDialog?.cancel()
@@ -89,7 +84,6 @@ abstract class BaseFragment : Fragment(), BaseView, ViewCallback {
 
     abstract fun onBackPressed()
     abstract fun setUp()
-    abstract fun observeOnVM()
 }
 
 interface Action {

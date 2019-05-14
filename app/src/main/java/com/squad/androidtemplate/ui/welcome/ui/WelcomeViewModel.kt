@@ -15,9 +15,10 @@ import com.google.android.gms.tasks.Task
 import com.squad.androidtemplate.Event
 import com.squad.androidtemplate.R
 import com.squad.androidtemplate.ui.base.BaseViewModel
-import com.squad.androidtemplate.ui.login.data.WelcomeRepository
-import com.squad.androidtemplate.ui.welcome.ui.ActivityNavigation
+import com.squad.androidtemplate.ui.login.data.LoginRepository
+import com.squad.androidtemplate.ui.welcome.data.WelcomeRepository
 import com.squad.androidtemplate.ui.welcome.ui.LiveMessageEvent
+import com.squad.androidtemplate.ui.welcome.ui.WelcomeNavigator
 import com.squad.androidtemplate.utils.views.custom.ViewCallback
 
 const val GOOGLE_SIGN_IN: Int = 9001
@@ -25,10 +26,11 @@ const val FACEBOOK_SIGN_IN: Int = 64206
 
 class WelcomeViewModel(
     private val welcomeRepository: WelcomeRepository,
+    private val loginRepository: LoginRepository,
     private val googleSignInClient: GoogleSignInClient
 ) : BaseViewModel() {
 
-    val startActivityForResultEvent = LiveMessageEvent<ActivityNavigation>()
+    val startActivityForResultEvent = LiveMessageEvent<WelcomeNavigator>()
     private var mCallbackManager: CallbackManager? = null
     //Called on google login button click
     fun googleSignUp() {
