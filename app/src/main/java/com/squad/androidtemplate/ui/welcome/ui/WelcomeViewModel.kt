@@ -1,10 +1,13 @@
-package com.squad.androidtemplate.ui.welcome.ui.welcome
+package com.squad.androidtemplate.ui.welcome.ui
 
 
 import android.content.Intent
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
+import com.facebook.Profile
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -17,8 +20,6 @@ import com.squad.androidtemplate.R
 import com.squad.androidtemplate.ui.base.BaseViewModel
 import com.squad.androidtemplate.ui.login.data.LoginRepository
 import com.squad.androidtemplate.ui.welcome.data.WelcomeRepository
-import com.squad.androidtemplate.ui.welcome.ui.LiveMessageEvent
-import com.squad.androidtemplate.ui.welcome.ui.WelcomeNavigator
 import com.squad.androidtemplate.utils.views.custom.ViewCallback
 
 const val GOOGLE_SIGN_IN: Int = 9001
@@ -31,6 +32,11 @@ class WelcomeViewModel(
 ) : BaseViewModel() {
 
     val startActivityForResultEvent = LiveMessageEvent<WelcomeNavigator>()
+
+    private val _uiState = MutableLiveData<WelcomeUiModel>()
+    val uiState: LiveData<WelcomeUiModel>
+        get() = _uiState
+
     private var mCallbackManager: CallbackManager? = null
     //Called on google login button click
     fun googleSignUp() {
@@ -42,8 +48,14 @@ class WelcomeViewModel(
         mCallbackManager = CallbackManager.Factory.create()
         LoginManager.getInstance().registerCallback(mCallbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
+                val profile = Profile.getCurrentProfile()
                 emitUiState(
-                    showSuccess = Event(R.string.login_successful)
+                    showSuccess = Event(
+                        LoginResultUiModel(
+                            profile.firstName,
+                            profile.getProfilePictureUri(300, 300).toString()
+                        )
+                    )
                 )
             }
 
@@ -81,7 +93,12 @@ class WelcomeViewModel(
             account?.apply {
                 // .. Store user details
                 emitUiState(
-                    showSuccess = Event(R.string.login_successful)
+                    showSuccess = Event(
+                        LoginResultUiModel(
+                            completedTask.result?.displayName!!,
+                            completedTask.result?.email
+                        )
+                    )
                 )
             }
         } catch (e: ApiException) {
@@ -94,10 +111,11 @@ class WelcomeViewModel(
     private fun emitUiState(
         showProgress: Boolean = false,
         showError: Event<Int>? = null,
-        showSuccess: Event<Int>? = null,
+        showSuccess: Event<LoginResultUiModel>? = null,
         enableLoginButton: Boolean = false
     ) {
-
+        val uiModel = WelcomeUiModel(showProgress, showError, showSuccess, enableLoginButton)
+        _uiState.value = uiModel
     }
 
     override fun onRefresh() {
@@ -112,3 +130,19 @@ class WelcomeViewModel(
 
 
 }
+
+data class WelcomeUiModel(
+    val showProgress: Boolean,
+    val showError: Event<Int>?,
+    val showSuccess: Event<LoginResultUiModel>?,
+    val enableLoginButton: Boolean
+)
+
+
+/**
+ * UI Model for login success
+ */
+data class LoginResultUiModel(
+    val displayName: String,
+    val portraitUrl: String?
+)

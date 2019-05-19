@@ -9,7 +9,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.squad.androidtemplate.ui.login.data.LoginRepository
 import com.squad.androidtemplate.ui.login.ui.LoginViewModel
 import com.squad.androidtemplate.ui.welcome.data.WelcomeRepository
-import com.squad.androidtemplate.ui.welcome.ui.welcome.WelcomeViewModel
+import com.squad.androidtemplate.ui.welcome.ui.WelcomeViewModel
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
 

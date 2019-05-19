@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.StringRes
+import androidx.lifecycle.Observer
 import com.facebook.login.LoginManager
 import com.google.android.material.snackbar.Snackbar
 import com.squad.androidtemplate.R
@@ -28,8 +30,35 @@ class WelcomeFragment : BaseFragment() {
     override fun setUp() {
         binding.viewmodel?.initFaceBook()
         subscribeUi()
+        setupViewModelObserver()
     }
 
+    fun setupViewModelObserver() {
+
+        binding.viewmodel?.uiState?.observe(this, Observer {
+            val uiModel = it ?: return@Observer
+
+            if (uiModel.showProgress) {
+
+            }
+
+            if (uiModel.showError != null) {
+
+            }
+            if (uiModel.showSuccess != null) {
+
+            }
+        })
+    }
+
+    private fun showLoginFailed(@StringRes errorString: Int) {
+        Snackbar.make(binding.container, errorString, Snackbar.LENGTH_SHORT).show()
+        navigateToWelcomeActivity()
+    }
+
+    private fun navigateToWelcomeActivity() {
+        (activity as WelcomeActivity).navigateToHome()
+    }
 
     private fun subscribeUi() {
         //this sets the LifeCycler owner and receiver

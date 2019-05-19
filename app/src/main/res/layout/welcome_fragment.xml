@@ -5,7 +5,7 @@
         tools:context=".ui.welcome.ui.WelcomeActivity">
     <data>
         <variable name="viewmodel"
-                  type="com.squad.androidtemplate.ui.welcome.ui.welcome.WelcomeViewModel"/>
+                  type="com.squad.androidtemplate.ui.welcome.ui.WelcomeViewModel"/>
         <variable
                 name="listener"
                 type="com.squad.androidtemplate.ui.welcome.ui.WelcomeUserActionsListener"/>

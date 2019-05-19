@@ -5,7 +5,6 @@ import com.squad.androidtemplate.R
 import com.squad.androidtemplate.databinding.WelcomeActivityBinding
 import com.squad.androidtemplate.ui.base.view.BaseActivity
 import com.squad.androidtemplate.ui.welcome.ui.welcome.WelcomeFragment
-import com.squad.androidtemplate.ui.welcome.ui.welcome.WelcomeViewModel
 import com.squad.androidtemplate.utils.extension.obtainViewModel
 import com.squad.androidtemplate.utils.extension.replaceFragmentInActivity
 
