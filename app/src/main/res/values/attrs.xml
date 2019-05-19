@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TextFonts">
+        <attr name="textStyleFont" format="enum">
+            <enum name="latoBold_notoSansArabicBold" value="0" />
+            <enum name="latoBoldItalic_notoSansArabicBold" value="1" />
+            <enum name="latoItalic_notoSansArabicRegular" value="2" />
+            <enum name="latoRegular_notoSansArabicRegular" value="3" />
+            <enum name="optimaBold_GeDinarOneMedium" value="4" />
+            <enum name="optimaRegular_GeDinarOneMedium" value="5" />
+        </attr>
+    </declare-styleable>
+</resources>
